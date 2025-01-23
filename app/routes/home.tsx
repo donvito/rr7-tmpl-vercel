@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
+import { Link } from "react-router-dom";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -13,5 +14,14 @@ export function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;
+  return (
+    <div>
+      <Welcome message={loaderData.message} />
+      <div className="mt-4">
+        <Link to="/characters" className="text-blue-600 hover:underline">
+          View Star Wars Characters
+        </Link>
+      </div>
+    </div>
+  );
 }
