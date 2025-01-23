@@ -14,14 +14,5 @@ export function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return (
-    <div>
-      <Welcome message={loaderData.message} />
-      <div className="mt-4">
-        <Link to="/characters" className="text-blue-600 hover:underline">
-          View Star Wars Characters
-        </Link>
-      </div>
-    </div>
-  );
+  return <Welcome message={loaderData.message} />;
 }
