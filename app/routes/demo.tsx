@@ -1,5 +1,6 @@
 import type { Route } from "./+types/demo";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface DemoData {
   timestamp: string;
@@ -44,6 +45,14 @@ export async function loader({ request }: Route.LoaderArgs) {
 
 export default function Component({ loaderData }: Route.ComponentProps) {
   const { timestamp, randomNumber, serverInfo, requestInfo } = loaderData;
+  const [helloMessage, setHelloMessage] = useState<string>("");
+
+  useEffect(() => {
+    fetch('/api/hello')
+      .then(response => response.json())
+      .then(data => setHelloMessage(data.message))
+      .catch(error => console.error('Error fetching hello message:', error));
+  }, []);
 
   return (
     <div className="p-4">
@@ -55,6 +64,12 @@ export default function Component({ loaderData }: Route.ComponentProps) {
       </div>
       
       <div className="space-y-4 max-w-lg mx-auto">
+        {/* API Response Section */}
+        <div className="border p-4 rounded shadow">
+          <h2 className="font-semibold mb-2">API Response:</h2>
+          <p>{helloMessage || "Loading..."}</p>
+        </div>
+
         <div className="border p-4 rounded shadow">
           <h2 className="font-semibold mb-2">Basic Server Data:</h2>
           <p>Timestamp: {timestamp}</p>

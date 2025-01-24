@@ -10,6 +10,11 @@ declare module "react-router" {
 
 const app = express();
 
+// Add API routes before the React Router handler
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello React Router 7!' });
+});
+
 app.use(
   createRequestHandler({
     // @ts-expect-error - virtual module provided by React Router at build time
