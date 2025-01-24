@@ -6,6 +6,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { Outlet as RouterOutlet } from "react-router-dom";
+import { NavMenu } from "./components/NavMenu";
+import "./app.css";
 
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
@@ -34,7 +37,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <NavMenu />
+        <main>
+          {children}
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,8 +48,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
+export default function Root() {
+  return <RouterOutlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

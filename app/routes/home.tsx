@@ -14,5 +14,14 @@ export function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;
+  return (
+    <div>
+      <Welcome message={loaderData.message} />
+      <div className="text-center mt-4">
+        <Link to="/blog" className="text-blue-600 hover:text-blue-800 underline">
+          Visit Our Blog
+        </Link>
+      </div>
+    </div>
+  );
 }
