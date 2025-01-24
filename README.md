@@ -48,6 +48,20 @@ npm run build
 
 This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
 
+## Environment Setup
+
+1. Copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+```
+
+2. Update the `.env` file with your database credentials:
+```
+DATABASE_URL=postgresql://<username>:<password>@<host>/<database>?sslmode=require
+```
+
+The application uses a PostgreSQL database. Make sure to replace the placeholders with your actual database credentials.
+
 ---
 
 Built with ❤️ using React Router.
